@@ -1,0 +1,140 @@
+<app-header></app-header>
+<div class="container-fluid mt--7">
+  <!-- Table -->
+  <div class="row">
+    <form #form="ngForm" (ngSubmit)="update(form)">
+      <div class="col">
+        <div class="card shadow">
+          <div class="card-header border-0">
+            <h3 class="mb-0">Role Update</h3>
+          </div>
+          <!--Content-->
+          <div class="table-responsive  p-5">
+            <div class="row">
+              <div class="col-md-12" style="margin-left: auto;">
+                <div class="row">
+                  <div class="col-md-1"></div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <input type="text" [class.is-valid]="this.name.valid"
+                        [class.is-invalid]="this.name.invalid&&this.name.touched" required #name="ngModel" name="role.name"
+                        [(ngModel)]="this.role.role.name" class="form-control is-valid">
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <input type="number" placeholder="Vage" [class.is-valid]="this.vage.valid"
+                        [class.is-invalid]="this.vage.invalid&&this.vage.touched" required #vage="ngModel"
+                        name="role.wage" [(ngModel)]="this.role.role.wage" class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <input type="number" placeholder="Over Time Pay" class="form-control"
+                        [class.is-valid]="this.over.valid" [class.is-invalid]="this.over.invalid&&this.over.touched"
+                        required #over="ngModel" name="role.overtimePay" [(ngModel)]="this.role.role.overtimePay">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-1"></div>
+              </div>
+              <div class="col-md-12">
+                <h3>Role Employe</h3>
+                <table class="table align-items-center table-flush">
+                  <thead class="thead-light">
+                    <tr>
+                      <th scope="col"></th>
+                      <th scope="col">Image</th>
+                      <th scope="col">Name</th>
+                      <th scope="col">Email</th>
+                      <th scope="col">Phone</th>
+                      <th scope="col"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of this.role.employes;let index">
+                      <th scope="row">
+                        <div class="media align-items-center">
+                          <div class="media-body">
+                            <span class="mb-0 text-sm"><input type="checkbox" (change)="Remove(item.id)"></span>
+                          </div>
+                        </div>
+                      </th>
+                      <td>
+                        <img *ngIf="!item.imagePath.match('http')" width="50" src="{{this.imagePath}}{{item.imagePath}}"
+                          alt="">
+                        <img *ngIf="item.imagePath.match('http')" width="50" src="{{item.imagePath}}" alt="">
+                      </td>
+                      <td>
+                        <span class="badge badge-dot mr-4">
+                          <i class="bg-success"></i>{{item.name}} {{item.lastName}}
+                        </span>
+                      </td>
+                      <td>
+                        <span class="badge badge-dot mr-4">
+                          <i class="bg-success"></i>{{item.email}}
+                        </span>
+                      </td>
+                      <td>
+                        <span class="badge badge-dot mr-4">
+                          <i class="bg-success"></i>{{item.phoneNumber}}
+                        </span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <h3>Non Employe</h3>
+                <table class="table align-items-center table-flush">
+                  <thead class="thead-light">
+                    <tr>
+                      <th scope="col"></th>
+                      <th scope="col">Image</th>
+                      <th scope="col">Name</th>
+                      <th scope="col">Email</th>
+                      <th scope="col">Phone</th>
+                      <th scope="col"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of this.role.nonEmployes;let index">
+                      <th scope="row">
+                        <div class="media align-items-center">
+                          <div class="media-body">
+                            <span class="mb-0 text-sm"><input type="checkbox" (change)="Add(item.id)"></span>
+                          </div>
+                        </div>
+                      </th>
+                      <td>
+                        <img *ngIf="!item.imagePath.match('http')" width="50" src="{{this.imagePath}}{{item.imagePath}}"
+                          alt="">
+                        <img *ngIf="item.imagePath.match('http')" width="50" src="{{item.imagePath}}" alt="">
+                      </td>
+                      <td>
+                        <span class="badge badge-dot mr-4">
+                          <i class="bg-success"></i>{{item.name}} {{item.lastName}}
+                        </span>
+                      </td>
+                      <td>
+                        <span class="badge badge-dot mr-4">
+                          <i class="bg-success"></i>{{item.email}}
+                        </span>
+                      </td>
+                      <td>
+                        <span class="badge badge-dot mr-4">
+                          <i class="bg-success"></i>{{item.phoneNumber}}
+                        </span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="row pl-2">
+              <button [disabled]="!this.form.valid" type="submit" class="btn btn-outline-danger btn-md">Update</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

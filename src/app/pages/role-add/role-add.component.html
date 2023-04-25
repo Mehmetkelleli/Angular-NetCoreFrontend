@@ -1,0 +1,39 @@
+<app-header></app-header>
+<div class="container-fluid mt--7">
+  <!-- Table -->
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <h3 class="mb-0">Card tables</h3>
+        </div>
+        <!--Content-->
+        <div class="table-responsive  p-5">
+          <form #form="ngForm" (ngSubmit)="this.createRole(form)">
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <input type="text" placeholder="Role Name" [class.is-valid]="this.name.valid" [class.is-invalid]="this.name.invalid&&this.name.touched" required #name="ngModel" name="name" [(ngModel)]="this.role.name"  class="form-control">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <input type="number" placeholder="Vage" [class.is-valid]="this.wage.valid" [class.is-invalid]="this.wage.invalid&&this.wage.touched" required #wage="ngModel" name="wage" [(ngModel)]="this.role.wage" class="form-control">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <input type="number" placeholder="Over Time Pay"  [class.is-valid]="this.over.valid" [class.is-invalid]="this.over.invalid&&this.over.touched" required #over="ngModel" name="overtimePay" [(ngModel)]="this.role.overtimePay" class="form-control"  >
+                </div>
+              </div>
+            </div>
+            <div class="row pl-2">
+              <button type="submit" class="btn btn-outline-danger btn-md" [disabled]="!this.form.valid">Create</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

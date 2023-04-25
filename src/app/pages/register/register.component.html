@@ -1,0 +1,126 @@
+<div>{{this.registers | json}}</div>
+<div class="header bg-gradient-danger py-5 py-lg-5">
+  <div class="container">
+    <div class="header-body text-center mb-7">
+      <div class="row justify-content-center">
+        <div class="col-lg-5 col-md-6">
+          <h1 class="text-white">Welcome!</h1>
+          <p class="text-lead text-light">Use these awesome forms to login or create new account in your project for free.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="separator separator-bottom separator-skew zindex-100">
+    <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <polygon class="fill-default" points="2560 0 2560 100 0 100"></polygon>
+    </svg>
+  </div>
+</div>
+<!-- Page content -->
+<div class="container mt--8 pb-5">
+  <!-- Table -->
+  <div class="row justify-content-center">
+    <div class="col-lg-6 col-md-8">
+      <div class="card bg-secondary shadow border-0">
+        <div class="card-header bg-transparent pb-5">
+          <div class="text-muted text-center mt-2 mb-4"><small>Sign up with</small></div>
+        </div>
+        <div class="card-body px-lg-5 py-lg-5">
+          <div class="text-center text-muted mb-4">
+            <small>Or sign up with credentials</small>
+          </div>
+          <form role="form" #form="ngForm" (ngSubmit)="singUp(form)">
+            <div class="form-group">
+              <div class="input-group input-group-alternative mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                </div>
+                <ngx-scanner-face #scanner="scanner" [isAuto]="true"></ngx-scanner-face>
+
+                <span>{{scanner.data.value | json}}</span><!-- value -->
+                <span>{{scanner.data | async | json}}</span><!-- async -->
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-group input-group-alternative mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                </div>
+                <input class="form-control" placeholder="Name" [(ngModel)]="this.registers.Name" name="Name" #Name="ngModel" required="" minlength="3" type="text">
+                <div *ngIf="this.Name.invalid&&this.Name.touched" class="text-danger">Name is must area</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-group input-group-alternative mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                </div>
+                <input class="form-control" placeholder="Last Name" [(ngModel)]="this.registers.LastName" name="LastName" #LastName="ngModel" required="" minlength="3" type="text">
+                <div *ngIf="this.LastName.invalid&&this.LastName.touched" class="text-danger">LastName is must area</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-group input-group-alternative mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                </div>
+                <input class="form-control" placeholder="Age" [(ngModel)]="this.registers.Age" name="Age" #Age="ngModel" required="" type="number">
+                <div *ngIf="this.Age.invalid&&this.Age.touched" class="text-danger">Age is must area</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-group input-group-alternative mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                </div>
+                <input class="form-control" placeholder="E Mail" [(ngModel)]="this.registers.EMail" name="EMail" #Mail="ngModel" required="" minlength="" type="email">
+                <div *ngIf="this.Mail.invalid&&this.Mail.touched" class="text-danger">EMail is must area</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-group input-group-alternative mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                </div>
+                <input class="form-control" placeholder="User Name" [(ngModel)]="this.registers.UserName" name="UserName" #UserName="ngModel" required="" minlength="10" type="text">
+                <div *ngIf="this.UserName.invalid&&this.UserName.touched" class="text-danger">Name is must area</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-group input-group-alternative mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                </div>
+                <input class="form-control" [(ngModel)]="this.registers.Picture" name="Picture" #Picture="ngModel" (change)="onFileChanged($event)" required="" type="file">
+                <div *ngIf="this.Picture.invalid&&this.Picture.touched" class="text-danger">Name is must area</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-group input-group-alternative">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                </div>
+                <input class="form-control" [(ngModel)]="this.registers.Password" name="Password" #Password="ngModel" required="" minlength="10" type="Password">
+                <div class="text-muted">[a-z] [A-Z] [1-9] [.-_-]</div>
+                <div *ngIf="this.Password.invalid&&this.Password.touched" class="text-danger">Password is must area</div>
+              </div>
+            </div>
+            <div class="row my-4">
+              <div class="col-12">
+                <div class="custom-control custom-control-alternative custom-checkbox">
+                  <input class="custom-control-input" id="customCheckRegister" type="checkbox">
+                  <label class="custom-control-label" for="customCheckRegister">
+                    <span class="text-muted">I agree with the <a href="#!">Privacy Policy</a></span>
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="text-center">
+              <button type="submit" [disabled]="!this.form.valid" class="btn btn-primary mt-4">Create account</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

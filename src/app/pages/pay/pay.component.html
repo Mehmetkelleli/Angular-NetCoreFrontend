@@ -1,0 +1,67 @@
+<app-header></app-header>
+<div class="container-fluid mt--7">
+  <!-- Table -->
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <div class="col-12" style="display:flex;justify-content:space-between">
+            <h3 style="display:inline" class="mb-0">Pay And Personel List</h3>
+            <button class="btn btn-outline-danger" (click)="payEmps()">Pay All</button>
+          </div>
+        </div>
+        <div class="table-responsive">
+          <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">Image</th>
+                <th scope="col">Name</th>
+                <th scope="col">Total Wage</th>
+                <th scope="col">Over Time Pay</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of this.employeList">
+                <th scope="row">
+                  <div class="media align-items-center">
+                    <div class="media-body">
+                      <img alt="Image placeholder" *ngIf="!item.employe.imagePath.match('http')" src="{{this.imagePath}}/{{item.employe.imagePath}}" class="rounded-circle">
+
+                      <img alt="Image placeholder" *ngIf="item.employe.imagePath.match('http')" src="{{item.employe.imagePath}}" class="rounded-circle">
+                    </div>
+                  </div>
+                </th>
+                <td>
+                  {{item.employe.name}} {{item.employe.lastName}}
+                </td>
+                <td>
+                  <span class="badge badge-dot mr-4">
+                    <i class="bg-success"></i>{{item.totalWage}}
+                  </span>
+                </td>
+                <td>
+                  <span class="badge badge-dot mr-4">
+                    <i class="bg-success"></i>{{item.totalHours}}
+                  </span>
+                </td>
+                <td class="text-right">
+                  <div ngbDropdown placement="bottom-right">
+                    <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
+                      <i class="fas fa-ellipsis-v"></i>
+                    </a>
+                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+                      <a class="dropdown-item" [routerLink]="['/payDetails', item.employe.id]"
+                      routerLinkActive="router-link-active" href="javascript:void(0)">Details</a>
+                      <a class="dropdown-item" href="javascript:void(0)" (click)="pay(item.employe.id)">Pay</a>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
